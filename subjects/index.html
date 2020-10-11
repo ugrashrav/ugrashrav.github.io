@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Mutant & Proud</title>
+    </head>
+    <body>
+    <div>
+        <canvas id="theCanvas" width="500" height="500" style="border:1px solid #d3d3d3;">Does not support</canvas>
+    </div>
+    <script>
+    var theCanvas = document.getElementById("theCanvas");
+    var ctx = theCanvas.getContext("2d");
+    //constants
+    var x = 5;
+    var y = 7;
+    var dx = 5;
+    var dy = 2;
+    //drawing a dot
+    function dot(x,y){
+        ctx.beginPath();
+        ctx.arc(x,y,50,0,2*Math.PI);
+        ctx.fill();
+    };
+    //moving it in space
+    function move(){
+    	    ctx.clearRect(0, 0, theCanvas.width, theCanvas.height);
+    	    x+=dx;
+    	    y+=dy;
+    	    dot(x,y);
+    	    //collision detection
+    	    if(x>449){dx=-5;}
+    	    if(y>449){dy=-2;}
+    	    if(x<51){dx=5;}
+    	    if(y<51){dy=2;}
+    	    //Repeat
+    	    window.setTimeout(move,1000/30);
+    };
+    move();
+    </script>
+    </body>
+    
+</html>
